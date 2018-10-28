@@ -25,9 +25,5 @@ staticlib: stat_matrix.o
 dynamiclib: dyn_matrix.o
 	$(CC) -shared -o $(LIB)/libmatrix.so $^
 
-
 clean :
 	rm -rf *.o
-
-clean_library:
-	rm -rf $(LIB)/*.a ; rm -rf $(LIB)/*.so

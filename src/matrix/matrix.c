@@ -46,7 +46,7 @@ struct Matrix alloc(int ncol, int nrow){
         exit(1);
     }
     for (i = 0; i < m.ncol; i++){
-        m.data[i] = (char *) malloc(m.ncol * sizeof(char));
+        m.data[i] = (char *) malloc(m.nrow * sizeof(char));
         if (m.data[i] == NULL){
             perror("Error during the dynamic allocation of one of the secondary parts of the matrix\n");
             for (j = i - 1; j >= 0; j++){
@@ -88,12 +88,36 @@ void display_matrix(struct Matrix m){
     int j;
 
     if (m.data != NULL){
-        for (i = 0; i < m.ncol; i++){
-            for (j = 0; j < m.nrow; j++){
-                printf("%c", m.data[i][j]);
+        for (i = 0; i < m.nrow; i++){
+            for (j = 0; j < m.ncol; j++){
+                switch(m.data[j][i]){
+                    case 'o':
+                        printf("|     |");
+                        break;
+                    case '1':
+                        printf("|  %c  |", 'X');
+                        break;
+                    case '0':
+                        printf("|  %c  |", 'O');
+                        break;
+                    default :
+                        printf("|  E  |");
+                }
             }
             printf("\n");
         }
+        for (i = 0; i < m.ncol; i++){
+            printf("=======");
+        }
+        printf("\n");
+        for (i = 0; i < m.ncol; i++){
+            printf("|  %d  |", i);
+        }
+        printf("\n");
+        for (i = 0; i < m.ncol; i++){
+            printf("=======");
+        }
+        printf("\n");
     } else {
         perror("Error : Can't display null matrix data !\n");
         exit(1);

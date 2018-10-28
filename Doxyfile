@@ -1,6 +1,6 @@
 PROJET_NAME = "Connect4"
 OUTPUT_DIRECTORY = doc/
-INPUT = ./src/matrix/matrix.c ./src/matrix/testmatrix.c ./src/connect4/game.c ./src/connect4/testgame.c 
+INPUT = ./include/matrix.h ./include/game.h ./src/matrix/matrix.c ./src/matrix/testmatrix.c ./src/connect4/game.c ./src/connect4/testgame.c 
 FILE_PATTERNS = include/*.h src/matrix/*.c src/connect4/*.c
 GENERATE_HTML = YES
 GENERATE_LATEX = NO

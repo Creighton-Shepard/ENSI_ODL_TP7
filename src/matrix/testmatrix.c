@@ -23,20 +23,18 @@
 #include <matrix.h>
 #include <assert.h>
 
+/* Prototype des fonctions de tests */
+void test_a();
+void test_i_m();
+
 /**
 * Main function used to run all the matrix tests at once
 */
-
-void test_a();
-void test_i_m();
-void test_d_m();
-
 int main(void){
     printf("Beginning of Matrix tests\n");
 
     test_a();
     test_i_m();
-    test_d_m();
 
     printf("End of Matrix tests : tests succeed !\n");
     return 1;
@@ -50,21 +48,21 @@ void test_a(){
 
     m.ncol = -1;
     m.nrow = 6;
-    m=alloc(m.ncol, m.nrow);
+    m = alloc(m.ncol, m.nrow);
     assert(m.data == NULL);
 
     m.nrow = -1;
-    m=alloc(m.ncol, m.nrow);
+    m = alloc(m.ncol, m.nrow);
     assert(m.data == NULL);
 
     m.ncol = 8;
     m.nrow = -1;
-    m=alloc(m.ncol, m.nrow);
+    m = alloc(m.ncol, m.nrow);
     assert(m.data == NULL);
 
     m.ncol=8;
     m.nrow=6;
-    m=alloc(m.ncol, m.nrow);
+    m = alloc(m.ncol, m.nrow);
     assert(m.data != NULL);
 
     free_matrix(m);
@@ -80,7 +78,7 @@ void test_i_m(){
 
     m.ncol = 8;
     m.nrow = 6;
-    m=alloc(m.ncol, m.nrow);
+    m = alloc(m.ncol, m.nrow);
     init_matrix(m);
     for (i = 0; i < m.ncol; i++){
         for (j = 0; j < m.nrow; j++){
@@ -88,33 +86,4 @@ void test_i_m(){
         }
     }
     free_matrix(m);
-}
-
-/**
- * Test the function "display_matrix" of matrix.c file 
- */
-void test_d_m(){
-    struct Matrix m;
-    int i;
-    int j;
-    int choice;
-
-    m.ncol = 8;
-    m.nrow = 6;
-    m=alloc(m.ncol, m.nrow);
-    init_matrix(m);
-    printf("Main List:\n");
-    display_matrix(m);
-    printf("Witness List:\n");
-    for (i = 0; i < m.ncol; i++){
-        for (j = 0; j < m.nrow; j++){
-            printf("%c", 'o');
-        }
-        printf("\n");
-    }
-    do{
-        printf("Are the two lists the same ? (1=yes, 0=no)\n");
-        scanf("%d", &choice);
-    } while(choice != 0 && choice != 1);
-    assert(choice == 1);
 }
